@@ -48,8 +48,11 @@ export class LoginPage {
       if (result) {
         this.afAuth.authState.subscribe(data => {
           this.afDatabase.object(`profile/${data.uid}`).valueChanges().subscribe(value => {
-            console.log(value);
+            //console.log(value);
             if (!value) this.navCtrl.setRoot('ProfileInfoPage');
+            if(value) {
+              this.navCtrl.setRoot('MainPage');
+            }
             //else
             //this.navCtrl.setRoot('TabsPage');
           });
