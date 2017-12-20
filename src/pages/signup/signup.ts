@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController } from 'ionic-angular';
-import { Profile } from "../../models/profile"
 import { AngularFireAuth } from "angularfire2/auth";
 import { AngularFireDatabase } from 'angularfire2/database'
 
@@ -18,7 +17,9 @@ import { AngularFireDatabase } from 'angularfire2/database'
 })
 export class SignupPage {
 
-  profile = {} as Profile;
+  email;
+  password;
+
   confirm_Password;
 
   loading;
@@ -48,37 +49,23 @@ export class SignupPage {
 
   async register() {
 
-    if (!this.profile.email) {
+    if (!this.email) {
       this.doAlert("Email must not be empty :)");
     }
-    else if (!this.profile.password) {
+    else if (!this.password) {
       this.doAlert("Password must not be empty :)");
     }
-    else if (this.confirm_Password != this.profile.password) {
+    else if (this.confirm_Password != this.password) {
       this.doAlert("Invalid Re-Password :)");
-    }
-    else if (!this.profile.first_name) {
-      this.doAlert("First name must not be empty :)");
-    }
-    else if (!this.profile.last_name) {
-      this.doAlert("Last name must not be empty :)");
-    }
-    else if (!this.profile.birth_date) {
-      this.doAlert("Birth date must not be empty :)");
-    }
-    else if (!this.profile.mobile_number) {
-      this.doAlert("Mobile number must not be empty :)");
     }
     else {
       try {
         this.presentLoadingText();
-        const resultCreate = await this.afAuth.auth.createUserWithEmailAndPassword(this.profile.email, this.profile.password);
+        const resultCreate = await this.afAuth.auth.createUserWithEmailAndPassword(this.email, this.password);
         if (resultCreate) {
-          const resultLogin = await this.afAuth.auth.signInWithEmailAndPassword(this.profile.email, this.profile.password);
+          const resultLogin = await this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password);
           if (resultLogin) {
-            this.afAuth.authState.subscribe(auth => {
-              this.afDatabase.object(`profile/${auth.uid}`).set(this.profile).then(() => this.navCtrl.setRoot('HomePage'));
-            })
+            this.navCtrl.setRoot('LoginPage');
           }
         }
       }

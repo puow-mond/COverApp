@@ -18,9 +18,10 @@ import { IonicPage, NavController } from 'ionic-angular';
 
 export class MainPage {
   homeRoot = 'HomePage'
-  profileRoot= 'ProfilePage'
+  profileRoot = 'ProfilePage'
+  chatRoot = 'ChatPage'
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController) { }
 
 
 }

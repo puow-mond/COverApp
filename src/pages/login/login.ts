@@ -41,15 +41,13 @@ export class LoginPage {
   }
 
   async login() {
-
     try {
       this.presentLoadingText();
       const result = await this.afAuth.auth.signInWithEmailAndPassword(this.credentials.email, this.credentials.password);
       if (result) {
         this.afAuth.authState.subscribe(data => {
           this.afDatabase.object(`profile/${data.uid}`).valueChanges().subscribe(value => {
-            //console.log(value);
-            if (!value) this.navCtrl.setRoot('ProfileInfoPage');
+            if (!value) this.navCtrl.setRoot('ProfileSettingsPage');
             if(value) {
               this.navCtrl.setRoot('MainPage');
             }
