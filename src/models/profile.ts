@@ -1,6 +1,5 @@
 export interface Profile {
-    email:string;
-    password:string;
+    user_name: string;
     first_name: string;
     last_name: string;
     birth_date: string;
