@@ -46,14 +46,15 @@ export class LoginPage {
       this.presentLoadingText();
       const result = await this.afAuth.auth.signInWithEmailAndPassword(this.credentials.email, this.credentials.password);
       if (result) {
-        this.afAuth.authState.subscribe(data => {
-          this.afDatabase.object(`profile/${data.uid}`).valueChanges().subscribe(value => {
-            console.log(value);
-            if (!value) this.navCtrl.setRoot('ProfileInfoPage');
+        this.navCtrl.setRoot('HomePage');
+        //this.afAuth.authState.subscribe(data => {
+        //  this.afDatabase.object(`profile/${data.uid}`).valueChanges().subscribe(value => {
+        //    console.log(value);
+            //if (!value) this.navCtrl.setRoot('ProfileInfoPage');
             //else
             //this.navCtrl.setRoot('TabsPage');
-          });
-        });
+      //    });
+      //  });
         // this.navCtrl.setRoot('TabsPage');
       }
     }

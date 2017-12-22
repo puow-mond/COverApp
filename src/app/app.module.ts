@@ -10,12 +10,10 @@ import { FIREBASE_CONFIG } from './app.firebase.config'
 import { AngularFireDatabase } from "angularfire2/database";
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +23,6 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
   ],
   providers: [
     StatusBar,
