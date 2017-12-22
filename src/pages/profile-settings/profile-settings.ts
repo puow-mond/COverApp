@@ -57,7 +57,7 @@ export class ProfileSettingsPage {
 
   }
 
-  update() {
+  async update() {
     if (!this.profile.user_name) {
       this.doAlert("Username must not be empty :)");
     }
@@ -74,10 +74,45 @@ export class ProfileSettingsPage {
       this.doAlert("Mobile number must not be empty :)");
     }
     else {
-      if (this.profile)
+      if (this.profile) {
+        let temp_username = this.profile.user_name;
+        //this.afDatabase.object(`profile/`).valueChanges().subscribe(value =>{
+        // console.log(value);
+        //});
+        let valid = 1;
+        await this.afDatabase.database.ref(`profile/`).once('value').then(function (snapshot) {
+          //   for (let user of snapshot) {
+          //     var username = user.val();
+          //     console.log(username.user_name+ " KUY");
+          //     if (username && temp_username == username.user_name) {
+          //       this.doAlert("this username has been already used.");
+          //       valid = 0;
+          //       break;
+          //     }
+          //   }
+          snapshot.forEach(function (userSnapshot) {
+            var username = userSnapshot.val();
+            console.log(temp_username + "  " + username.user_name);
+            if (username.user_name == undefined) {
+              //skip
+            }
+            else if (username.user_name == temp_username) {
+              valid = 0;
+              return;
+            }
+          });
+        })
+        console.log(valid);
+
+        if(valid)
         this.afAuth.authState.subscribe(auth => {
           this.afDatabase.object(`profile/${auth.uid}`).set(this.profile).then(() => this.navCtrl.setRoot('MainPage'));
         });
+        else
+          this.doAlert("Username has already been taken.");
+
+      }
+
     }
   }
 
