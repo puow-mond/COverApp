@@ -23,7 +23,7 @@ export class ProfileSettingsPage {
   loading;
 
 
-  avatar = "https://scontent.fbkk1-1.fna.fbcdn.net/v/t1.0-9/16684191_1431759500227788_4523539130141331084_n.jpg?_nc_fx=fbkk1-4&oh=e9445cc665a0345b51693fd953e39699&oe=5ABD0137";
+  avatar = "http://s3.amazonaws.com/nvest/Blank_Club_Website_Avatar_Gray.jpg";
 
   constructor(public loadingCtrl: LoadingController, private afAuth: AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams, private toast: ToastController
