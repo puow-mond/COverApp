@@ -5,11 +5,11 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    
+
       <ion-navbar color="Cover">
         <p align="center" style="font-weight: bold; font-size:20px; color: white; ">Update Profile</p>
       </ion-navbar>
-    
+
     </ion-header>
 
 
@@ -22,18 +22,18 @@
       <div class="spacer" style="height: 10px;"></div>
 
       <ion-list>
-          
+
             <ion-item>
               <ion-label>Username</ion-label>
               <ion-input type="text" text-right [attr.maxlength]="15" [(ngModel)]="profile.user_name"></ion-input>
             </ion-item>
-          
+
             <ion-item>
               <ion-label>First name</ion-label>
               <ion-input type="text" text-right [attr.maxlength]="15" [(ngModel)]="profile.first_name"></ion-input>
             </ion-item>
 
-            
+
             <ion-item>
                 <ion-label>Last name</ion-label>
                 <ion-input type="text" text-right [attr.maxlength]="15" [(ngModel)]="profile.last_name"></ion-input>
@@ -50,12 +50,12 @@
                 </ion-item>
 
 
-          
-          
+
+
           </ion-list>
-          
- 
+
+
               <button ion-button round outline color="CoverRed" (click)="update()">Update</button>
-  
+
 
 </ion-content>
