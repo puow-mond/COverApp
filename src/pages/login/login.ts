@@ -44,7 +44,7 @@ export class LoginPage {
     try {
       this.presentLoadingText();
       const result = await this.afAuth.auth.signInWithEmailAndPassword(this.credentials.email, this.credentials.password);
-      if (result) 
+      if (result)
         this.afAuth.authState.subscribe(data => {
           this.afDatabase.object(`profile/${data.uid}`).valueChanges().subscribe(value => {
             console.log(value);

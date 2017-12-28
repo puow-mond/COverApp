@@ -6,15 +6,21 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title >profile</ion-title>
-    
-    
+  <ion-navbar color="Cover">
+    <p style="font-weight: bold; font-size:20px; color: white; margin-left: 25px; ">Profile</p>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <div class="profile-image" (click)="editimage()">
+          <img src="http://s3.amazonaws.com/nvest/Blank_Club_Website_Avatar_Gray.jpg">
+        </div>
+        <div class="text-front">
+        <ion-label style="text-align:left; font-size:20px; color: black; ">Firstname:<ion-input type="first_name" [(ngModel)]="profile.first_name" disabled="true" ></ion-input></ion-label>
+        <ion-label style="text-align:left; font-size:20px; color: black; ">Lastname:<ion-input type="last_name" [(ngModel)]="profile.last_name" disabled="true" ></ion-input></ion-label>
+        <ion-label style="text-align:left; font-size:20px; color: black; ">Mobile number:<ion-input type="mobile_number" [(ngModel)]="profile.mobile_number" disabled="true" ></ion-input></ion-label>
+        <ion-label style="text-align:left; font-size:20px; color: black; ">Birth date:<ion-input type="birth_date" [(ngModel)]="profile.birth_date" disabled="true" ></ion-input></ion-label>
+        </div>
 </ion-content>
