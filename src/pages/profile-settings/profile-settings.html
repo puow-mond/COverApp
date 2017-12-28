@@ -6,56 +6,55 @@
 -->
 <ion-header>
 
-      <ion-navbar color="Cover">
-        <p align="center" style="font-weight: bold; font-size:20px; color: white; ">Update Profile</p>
-      </ion-navbar>
+  <ion-navbar color="Cover">
+    <p align="center" style="font-weight: bold; font-size:20px; color: white; ">Update Profile</p>
+  </ion-navbar>
 
-    </ion-header>
+</ion-header>
 
 
 <ion-content padding>
 
-    <div class="profile-image" (click)="editimage()">
-        <img src="{{avatar}}">
-      </div>
-      <br>
-      <div class="spacer" style="height: 10px;"></div>
+  <div class="profile-image" (click)="editimage()">
+    <img src="{{profile.photo_url}}">
+  </div>
+  <br>
+  <div class="spacer" style="height: 10px;"></div>
 
-      <ion-list>
+  <ion-list>
 
-            <ion-item>
-              <ion-label>Username</ion-label>
-              <ion-input type="text" text-right [attr.maxlength]="15" [(ngModel)]="profile.user_name"></ion-input>
-            </ion-item>
+    <ion-item>
+      <ion-label>Username</ion-label>
+      <ion-input type="text" text-right [attr.maxlength]="15" [(ngModel)]="profile.user_name"></ion-input>
+    </ion-item>
 
-            <ion-item>
-              <ion-label>First name</ion-label>
-              <ion-input type="text" text-right [attr.maxlength]="15" [(ngModel)]="profile.first_name"></ion-input>
-            </ion-item>
-
-
-            <ion-item>
-                <ion-label>Last name</ion-label>
-                <ion-input type="text" text-right [attr.maxlength]="15" [(ngModel)]="profile.last_name"></ion-input>
-              </ion-item>
-
-              <ion-item>
-                  <ion-label>Phone number</ion-label>
-                  <ion-input type="tol" text-right [attr.maxlength]="10" [(ngModel)]="profile.mobile_number"></ion-input>
-                </ion-item>
-
-              <ion-item>
-                  <ion-label>Birth date</ion-label>
-                  <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="profile.birth_date"></ion-datetime>
-                </ion-item>
+    <ion-item>
+      <ion-label>First name</ion-label>
+      <ion-input type="text" text-right [attr.maxlength]="15" [(ngModel)]="profile.first_name"></ion-input>
+    </ion-item>
 
 
+    <ion-item>
+      <ion-label>Last name</ion-label>
+      <ion-input type="text" text-right [attr.maxlength]="15" [(ngModel)]="profile.last_name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Phone number</ion-label>
+      <ion-input type="tol" text-right [attr.maxlength]="10" [(ngModel)]="profile.mobile_number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Birth date</ion-label>
+      <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="profile.birth_date"></ion-datetime>
+    </ion-item>
 
 
-          </ion-list>
 
 
-              <button ion-button round outline color="CoverRed" (click)="update()">Update</button>
+  </ion-list>
+
+  <button ion-button round outline color="CoverRed" (click)="update()">Update</button>
 
 
 </ion-content>

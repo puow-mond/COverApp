@@ -23,8 +23,6 @@ export class ProfileSettingsPage {
   loading;
 
 
-  avatar = "https://scontent.fbkk1-1.fna.fbcdn.net/v/t1.0-9/16684191_1431759500227788_4523539130141331084_n.jpg?_nc_fx=fbkk1-4&oh=e9445cc665a0345b51693fd953e39699&oe=5ABD0137";
-
   constructor(public loadingCtrl: LoadingController, private afAuth: AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams, private toast: ToastController
     , public alertCtrl: AlertController,
@@ -50,6 +48,7 @@ export class ProfileSettingsPage {
 
 
   ionViewDidLoad() {
+    this.profile.photo_url = "https://scontent.fbkk1-1.fna.fbcdn.net/v/t1.0-9/16684191_1431759500227788_4523539130141331084_n.jpg?_nc_fx=fbkk1-4&oh=e9445cc665a0345b51693fd953e39699&oe=5ABD0137";    
     console.log('ionViewDidLoad ProfileSettingsPage');
   }
 
@@ -98,22 +97,18 @@ export class ProfileSettingsPage {
             }
             else if (username.user_name == temp_username) {
               valid = 0;
-              return;
+              return 1;
             }
           });
         })
-        console.log(valid);
-
-        if(valid)
-        this.afAuth.authState.subscribe(auth => {
-          this.afDatabase.object(`profile/${auth.uid}`).set(this.profile).then(() => this.navCtrl.setRoot('MainPage'));
-        });
+        //console.log(valid);
+        if (valid)
+          this.afAuth.authState.subscribe(auth => {
+            this.afDatabase.object(`profile/${auth.uid}`).set(this.profile).then(() => this.navCtrl.setRoot('MainPage'));
+          });
         else
           this.doAlert("Username has already been taken.");
-
       }
-
     }
   }
-
 }

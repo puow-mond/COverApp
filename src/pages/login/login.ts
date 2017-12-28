@@ -47,6 +47,7 @@ export class LoginPage {
       if (result) 
         this.afAuth.authState.subscribe(data => {
           this.afDatabase.object(`profile/${data.uid}`).valueChanges().subscribe(value => {
+            console.log(value);
             if (!value) this.navCtrl.setRoot('ProfileSettingsPage');
             else
               this.navCtrl.setRoot('MainPage');

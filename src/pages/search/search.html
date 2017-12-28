@@ -17,20 +17,36 @@
 
 
 <ion-content>
-  
-      <ion-item>
-        <ion-label color="Cover">Username</ion-label>
-        <ion-input placeholder="Username"></ion-input>
+
+    <ion-item>
+        <ion-label color="CoverRed">Username</ion-label>
+        <ion-input [(ngModel)]="username" placeholder="Username"></ion-input>
         <button ion-button item-end color="CoverRed" (click)="search()">
-        <!-- --><ion-icon name="search"></ion-icon>
+            <!-- -->
+            <ion-icon name="search"></ion-icon>
         </button>
-      </ion-item>
-      
+
+    </ion-item>
+    <div class="spinner">
+        <ion-spinner name="crescent" class="spinner-assertive" *ngIf="showSpinner"></ion-spinner>
+    </div>
+
+    <div class="profile-image" *ngIf="showDiscription">
+        <img src="{{profile.photo_url}}">
+    </div>
+
+    <ion-label class="discription" *ngIf="showDiscription">{{profile.user_name}}</ion-label>
+    <ion-label class="not_found" *ngIf="user_not_found">User not found</ion-label>
+
+    <ion-row center>
+        <ion-col text-center>
+            <button ion-button round outline color="secondary" (click)="addFriend()" *ngIf="showAddFriend_button">Add friend!</button>
+        </ion-col>
+    </ion-row>
+
+    <ion-row center>
+        <ion-col text-center>
+            <button ion-button round outline color="used" *ngIf="showAdded_button">Added</button>
+        </ion-col>
+    </ion-row>
 </ion-content>
-
-
-<ion-row center>  
-    <ion-col text-center> 
-<button ion-button round outline color="secondary">Add friend!</button>
-</ion-col> 
-</ion-row>
