@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController  } from 'ionic-angular';
-import {Profile} from "../../models/profile"
-import {AngularFireAuth} from "angularfire2/auth";
-import {AngularFireDatabase} from 'angularfire2/database'
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { Profile } from "../../models/profile"
+import { AngularFireAuth } from "angularfire2/auth";
+import { AngularFireDatabase } from 'angularfire2/database'
+import { UserProvider } from '../../providers/user/user';
+
 /**
  * Generated class for the ProfilePage page.
  *
@@ -21,7 +23,7 @@ export class ProfilePage {
 
   constructor(public loadingCtrl: LoadingController, private afAuth: AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams, private toast: ToastController
-    ,
+    , public userservice: UserProvider,
     private afDatabase: AngularFireDatabase) {
   }
   presentLoadingText() {
@@ -32,20 +34,17 @@ export class ProfilePage {
     this.loading.present();
   }
 
+
+
   ionViewDidLoad() {
     this.update();
     console.log('ionViewDidLoad ProfilePage');
   }
- async update(){
-   
-     this.afAuth.authState.subscribe(data => {
-       this.afDatabase.object(`profile/${data.uid}`).valueChanges().subscribe(value => {
-        this.profile.birth_date=value.birth_date;
-        this.profile.first_name=value.first_name;
-        this.profile.last_name=value.last_name;
-        this.profile.mobile_number=value.mobile_number;
-       });
-     });
- }
+  update() {
+    this.profile = this.userservice.my_profile;
+  }
 
+  profilesettings() {
+    this.navCtrl.push('ChangeprofilePage');
+  }
 }

@@ -1,0 +1,19 @@
+page-friend {
+
+ /* TODO: spinner is dropping classes so we have to use ids: https://github.com/ionic-team/ionic/issues/7087 */
+ #archive-spinner,
+ #download-spinner,
+ .archiving .expand-hide,
+ .downloading .expand-hide {
+   display: none;
+ }
+ /* TODO: spinner doesn't have a good way to do this yet: https://github.com/ionic-team/ionic/issues/7087 */
+ .chat-sliding-demo ion-note {
+   font-size: 13px;
+   margin-top: -8px;
+ }
+
+ .chat-sliding-demo img {
+   pointer-events: none;
+ }
+}

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from "angularfire2/auth";
 import { AngularFireDatabase } from 'angularfire2/database'
-import { Chat } from "../../models/chat"
+import { Profile } from "../../models/profile"
 
 /**
  * Generated class for the SearchPage page.
@@ -17,8 +17,12 @@ import { Chat } from "../../models/chat"
   templateUrl: 'search.html',
 })
 export class SearchPage {
+
+  profile = {} as Profile;
+
   username;
-  profile = {} as Chat;
+
+  authState: any = null;
 
   //Attribute for ngIf
   user_not_found: boolean;
@@ -30,6 +34,10 @@ export class SearchPage {
   constructor(private afAuth: AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams,
     private afDatabase: AngularFireDatabase) {
+    this.afAuth.authState.subscribe((auth) => {
+      this.authState = auth
+    });
+
   }
 
   ionViewDidLoad() {
@@ -45,7 +53,7 @@ export class SearchPage {
     this.showDiscription = false;
     this.showAdded_button = false;
     this.showAddFriend_button = false;
-    this.profile = {} as Chat;
+    this.profile = {} as Profile;
 
     let search = this.username;
     var found_profile;
@@ -67,32 +75,31 @@ export class SearchPage {
 
     if (found_profile) {
       var valid = true;
-      // copy information for push to request.
-      this.profile.user_name = found_profile.user_name;
-      this.profile.first_name = found_profile.first_name;
-      this.profile.last_name = found_profile.last_name;
-      this.profile.photo_url = found_profile.photo_url;
-      await this.afAuth.authState.subscribe(async data => {
-        if (found_profile)
-          await this.afDatabase.database.ref(`request/${data.uid}`).once('value').then(function (snapshot) {
-            snapshot.forEach(async function (userSnapshot) {
-              var requested = await userSnapshot.val();
-              console.log(requested);
-              if (!requested || requested.user_name == undefined) {
-                //skip
-              }
-              else if (requested.user_name == found_profile.user_name) {
-                valid = false;
-                return 2;
-              }
-            });
-          })
-        if (valid)
-          this.showAddFriend_button = true;
-        else
-          this.showAdded_button = true;
-        this.showDiscription = true;
-      });
+      this.profile = found_profile;
+      //  await this.afAuth.authState.subscribe(async data => {
+      if (found_profile)
+        await this.afDatabase.database.ref(`request/${this.authState.uid}`).once('value').then(function (snapshot) {
+          snapshot.forEach(async function (userSnapshot) {
+            var requested = await userSnapshot.val();
+            var my_requested_uid = requested.sender;
+            var friend_uid = found_profile.uid;
+            if (!requested || requested.sender == undefined) {
+              //skip
+            }
+            else if (my_requested_uid === friend_uid) {
+              console.log("KUY");
+              valid = false;
+              return 2;
+            }
+          });
+        })
+      console.log(valid);
+      if (valid)
+        this.showAddFriend_button = true;
+      else
+        this.showAdded_button = true;
+      this.showDiscription = true;
+      // });
     }
 
     else { // user not found!
@@ -103,9 +110,17 @@ export class SearchPage {
   }
 
   async addFriend() {
-    await this.afAuth.authState.subscribe(auth => {
-      this.afDatabase.list(`request/${auth.uid}`).push(this.profile);
-    });
+    // await this.afAuth.authState.subscribe(auth => {
+    //   this.afDatabase.list(`request/${auth.uid}`).push(this.profile.uid);
+    //   this.afDatabase.list(`request/${this.profile.uid}`).push(auth.uid);
+    // });
+    var request = {} as Request;
+
+    request.sender = this.profile.uid;
+    await this.afDatabase.list(`request/${this.authState.uid}`).push(request);
+    request.sender = this.authState.uid;
+    await this.afDatabase.list(`request/${this.profile.uid}`).push(request);
+
     this.showAddFriend_button = false;
     this.showAdded_button = true;
   }

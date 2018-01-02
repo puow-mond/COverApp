@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, NgZone } from '@angular/core';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { UserProvider } from '../../providers/user/user';
+import { ChatProvider } from '../../providers/chat/chat';
+import { Profile } from '../../models/profile'
 
 /**
  * Generated class for the ChatPage page.
@@ -14,9 +17,31 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'chat.html',
 })
 export class ChatPage {
-  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  chats = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public userservice: UserProvider, public chatservice: ChatProvider, public events: Events, public zone: NgZone) {
+    this.chats = this.chatservice.recentlychats;
+
+    this.chats.sort(function (a, b) {
+      if (a.timestamp < b.timestamp)
+        return 1;
+      if (a.timestamp > b.timestamp)
+        return -1;
+      return 0;
+    });
+
+    this.events.subscribe('newmessage', () => {
+      this.chats = this.chatservice.recentlychats;
+      this.chats.sort(function (a, b) {
+        if (a.timestamp < b.timestamp)
+          return 1;
+        if (a.timestamp > b.timestamp)
+          return -1;
+        return 0;
+      });
+    })
   }
 
   ionViewDidLoad() {
@@ -24,8 +49,12 @@ export class ChatPage {
   }
 
 
-  search(){
-    this.navCtrl.setRoot('SearchPage');
+  add_friend() {
+    this.navCtrl.push('SearchPage');
+  }
+
+  search() {
+    this.navCtrl.push('FriendPage');
   }
 
 }

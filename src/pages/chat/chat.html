@@ -12,50 +12,30 @@
       <button ion-button icon-only (click)="search()">
         <ion-icon color="white" name="search"></ion-icon>
       </button>
-      <button ion-button icon-only (click)="search()">
+      <button ion-button icon-only (click)="add_friend()">
         <ion-icon color="white" name="person-add"></ion-icon>
       </button>
-    </ion-buttons>
-
-    <ion-buttons end>
-      <button ion-button (click)="toggleEdit()">{{editButton}}</button>
     </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <ion-list no-lines>
-    <ion-list-header>
-      Requests
-    </ion-list-header>
-    <ion-item-sliding *ngFor="let item of myrequests">
-      <ion-item>
-      <ion-avatar item-left>
-        <img src="{{item.username}}">
+<ion-content class="list-avatar-page">
+
+  <ion-list>
+
+    <ion-item *ngFor="let item of chats">
+
+      <ion-avatar item-start>
+        <img src={{item.profile.photo_url}}>
       </ion-avatar>
-      <h4>{{item.displayName}}</h4>
-      </ion-item>
-      <ion-item-options>
-        <button ion-button color="secondary" (click)="accept(item)">
-          <ion-icon name="checkmark"></ion-icon>
-          ADD
-        </button>
-        <button ion-button color="danger" (click)="ignore(item)">
-          <ion-icon name="trash"></ion-icon>
-          NOPE
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-    <ion-list-header>
-      Friends
-    </ion-list-header>
-    <ion-item *ngFor="let item of myfriends" (click)="buddychat(item)">
-      <ion-avatar item-left>
-        <img src={{item.photoURL}}>
-      </ion-avatar>
-      <h3>{{item.displayName}}</h3>
+      <h2>{{item.profile.first_name}} {{item.profile.last_name}}</h2>
+      <p>{{item.message}}</p>
+      <ion-note item-end>{{item.timestamp | date:'shortTime' }}</ion-note>
     </ion-item>
+
   </ion-list>
-  </ion-content>
+
+
+</ion-content>

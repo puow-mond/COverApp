@@ -11,6 +11,8 @@ import { FIREBASE_CONFIG } from './app.firebase.config'
 import { AngularFireDatabase } from "angularfire2/database";
 
 import { MyApp } from './app.component';
+import { ChatProvider } from '../providers/chat/chat';
+import { UserProvider } from '../providers/user/user';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { MyApp } from './app.component';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AngularFireDatabase,
-    AngularFireAuth
+    AngularFireAuth,
+    ChatProvider,
+    UserProvider
   ]
 })
 export class AppModule { }

@@ -103,6 +103,7 @@ export class ProfileSettingsPage {
         //console.log(valid);
         if (valid)
           this.afAuth.authState.subscribe(auth => {
+            this.profile.uid = auth.uid;
             this.afDatabase.object(`profile/${auth.uid}`).set(this.profile).then(() => this.navCtrl.setRoot('MainPage'));
           });
         else

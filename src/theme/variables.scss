@@ -47,6 +47,26 @@ $colors: (
 
 $tabs-md-tab-icon-color-active: rgb(253, 164, 22);
 $tabs-md-tab-text-color-active:	rgb(253, 164, 22);
+//#fffaec
+//#f6f6f6da
+$item-md-divider-background:#ffffffd3;
+$item-md-divider-color: rgb(0, 0, 0);
+$item-md-divider-font-size: 15px;
+$list-md-margin-bottom:1px;
+$searchbar-md-padding-bottom: 0px;
+
+$segment-button-md-border-color-activated: #ffffff;
+$segment-button-md-text-color-activated: #ffffff;
+
+$text-input-md-highlight-color:#ffbf00;
+
+$segment-button-ios-background-color:  #ffc61a;
+$segment-button-ios-background-color-activated: #ffff1a;
+$segment-button-ios-toolbar-button-max-width:250px;
+
+
+$label-md-text-color-focused:#ff850a;
+$text-input-md-show-valid-highlight:false;
 
 
 // App iOS Variables
