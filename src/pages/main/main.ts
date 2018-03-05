@@ -20,6 +20,7 @@ export class MainPage {
   homeRoot = 'HomePage'
   profileRoot = 'ProfilePage'
   chatRoot = 'ChatPage'
+  newPostPage = 'NewPage'
 
   constructor(public navCtrl: NavController) { }
 

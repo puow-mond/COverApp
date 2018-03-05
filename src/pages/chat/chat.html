@@ -23,9 +23,15 @@
 
 <ion-content class="list-avatar-page">
 
+  <div align="center" *ngIf="noChats">
+    <img width="200" height="200" src="../../assets/imgs/nochat.png" />
+  </div>
+
   <ion-list>
 
-    <ion-item *ngFor="let item of chats">
+
+
+    <button ion-item *ngFor="let item of chats" (click)="chat(item)">
 
       <ion-avatar item-start>
         <img src={{item.profile.photo_url}}>
@@ -33,7 +39,7 @@
       <h2>{{item.profile.first_name}} {{item.profile.last_name}}</h2>
       <p>{{item.message}}</p>
       <ion-note item-end>{{item.timestamp | date:'shortTime' }}</ion-note>
-    </ion-item>
+    </button>
 
   </ion-list>
 

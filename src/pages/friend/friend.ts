@@ -5,7 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 import { ChatProvider } from '../../providers/chat/chat';
 import { Profile } from '../../models/profile';
 import { RequestFriend } from "../../models/request"
-
+import { UserProvider } from '../../providers/user/user';
 
 /**
  * Generated class for the FriendPage page.
@@ -26,10 +26,11 @@ export class FriendPage {
 
   authState: any = null;
 
-  my_profile: any;
+  //my_profile: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private afDatabase: AngularFireDatabase, private afAuth: AngularFireAuth, public chatservice: ChatProvider) {
+    private afDatabase: AngularFireDatabase, private afAuth: AngularFireAuth, public chatservice: ChatProvider
+    , public userservice: UserProvider) {
     this.update_requestsAndFriends();
   }
 
@@ -39,12 +40,12 @@ export class FriendPage {
     this.afAuth.authState.subscribe(async (auth) => {
       this.authState = auth;
       //update my profile
-      var temp_profile = {} as Profile;
-      await this.afDatabase.database.ref(`profile/${auth.uid}`).once('value').then(function (snapshot) {
-        temp_profile = snapshot.val();
-        console.log(temp_profile);
-      })
-      this.my_profile = temp_profile;
+      // var temp_profile = {} as Profile;
+      // await this.afDatabase.database.ref(`profile/${auth.uid}`).once('value').then(function (snapshot) {
+      //   temp_profile = snapshot.val();
+      //   console.log(temp_profile);
+      // })
+      // this.my_profile = temp_profile;
       //update friends
       this.afDatabase.list(`friend/${auth.uid}`).valueChanges().subscribe(requests => {
         var temp = [];
@@ -105,7 +106,9 @@ export class FriendPage {
 
   chat(buddy: ItemSliding) {
     this.chatservice.initializebuddy(buddy);
-    this.chatservice.initialize_myProfile(this.my_profile);
+    //this.chatservice.initialize_myProfile(this.my_profile);
+    this.chatservice.initialize_myProfile(this.userservice.my_profile);
+    console.log(buddy);
     this.navCtrl.push('BuddychatPage');
   }
 

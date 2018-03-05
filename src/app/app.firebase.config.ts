@@ -1,8 +1,8 @@
 export const FIREBASE_CONFIG = {
-    apiKey: "AIzaSyDmxtouocPW7XRn7jl0KnDALLI-ID03djA",
-    authDomain: "coverapp-e871d.firebaseapp.com",
-    databaseURL: "https://coverapp-e871d.firebaseio.com",
-    projectId: "coverapp-e871d",
-    storageBucket: "coverapp-e871d.appspot.com",
-    messagingSenderId: "424236701164"
+    apiKey: "AIzaSyB3-ORwFU5WKNUiyZGYFenHzLPvEmCQW_w",
+    authDomain: "bello-ba98b.firebaseapp.com",
+    databaseURL: "https://bello-ba98b.firebaseio.com",
+    projectId: "bello-ba98b",
+    storageBucket: "bello-ba98b.appspot.com",
+    messagingSenderId: "1072284630307"
 };

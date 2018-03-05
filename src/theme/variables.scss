@@ -42,7 +42,10 @@ $colors: (
   white: #fff,
   Cover: #ffbf00,
   CoverRed: #ff9933,
-  used: #e6e6e6  
+  used: #e6e6e6,
+  newPageInput:rgb(255, 186, 95),
+  bank:#00cc00,
+  clock:	#99b3ff
 );
 
 $tabs-md-tab-icon-color-active: rgb(253, 164, 22);
@@ -67,7 +70,6 @@ $segment-button-ios-toolbar-button-max-width:250px;
 
 $label-md-text-color-focused:#ff850a;
 $text-input-md-show-valid-highlight:false;
-
 
 // App iOS Variables
 // --------------------------------------------------

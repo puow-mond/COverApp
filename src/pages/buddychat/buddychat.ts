@@ -24,26 +24,25 @@ export class BuddychatPage {
     public events: Events, public zone: NgZone) {
     this.buddy = this.chatservice.buddy;
     this.my_profile = this.chatservice.my_profile;
-    this.allmessages = this.chatservice.allChats;
-    if (this.allmessages[this.buddy.uid] == null || this.allmessages[this.buddy.uid] == undefined) {
-      // do nothing.
+   // console.log(this.buddy);
+    if (this.chatservice.allChats) {
+      this.allmessages = this.chatservice.allChats;
+      this.buddymesseges = Object.keys(this.allmessages[this.buddy.uid]);
     }
-    else this.buddymesseges = Object.keys(this.allmessages[this.buddy.uid]);
 
     this.scrollto();
     this.events.subscribe('newmessage', () => {
       this.allmessages = [];
       this.zone.run(() => {
-        this.allmessages = this.chatservice.allChats;
-        if (this.allmessages[this.buddy.uid] == null || this.allmessages[this.buddy.uid] == undefined) {
-          // do nothing.
+        if (this.chatservice.allChats) {
+          this.allmessages = this.chatservice.allChats;
+          this.buddymesseges = Object.keys(this.allmessages[this.buddy.uid]);
         }
-        else this.buddymesseges = Object.keys(this.allmessages[this.buddy.uid]);
       })
     })
   }
 
-   addmessage() {
+  addmessage() {
     this.chatservice.addnewmessage(this.newmessage).then(() => {
       this.content.scrollToBottom();
       this.newmessage = '';

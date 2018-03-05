@@ -6,6 +6,7 @@ import { Profile } from '../../models/profile'
 import { Events } from 'ionic-angular';
 
 
+
 /*
   Generated class for the UserProvider provider.
 
