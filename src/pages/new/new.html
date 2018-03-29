@@ -1,0 +1,115 @@
+<!--
+  Generated template for the NewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="Cover">
+    <span style="font-weight: bold; font-size:20px; color: white; margin-left: 25px; ">Create new post</span>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="add_friend()">
+        <ion-icon color="white" name="create"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="outer-content">
+  <ion-item>
+    <ion-input item-right placeholder="Title"></ion-input>
+    <ion-select placeholder="Type" interface="popover" [(ngModel)]="gaming" okText="Okay" color="Cover" cancelText="Dismiss">
+      <ion-option value="nes">NES</ion-option>
+      <ion-option value="n64">Nintendo64</ion-option>
+      <ion-option value="ps">PlayStation</ion-option>
+      <ion-option value="genesis">Sega Genesis</ion-option>
+      <ion-option value="saturn">Sega Saturn</ion-option>
+      <ion-option value="snes">SNES</ion-option>
+    </ion-select>
+  </ion-item>
+
+
+
+  <button ion-item>
+    <ion-icon name="compass" item-end color="primary"></ion-icon>
+    <ion-note item-center>Touch to set your location.</ion-note>
+  </button>
+
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="https://scontent.fbkk1-5.fna.fbcdn.net/v/t1.0-9/10934003_816450055092072_1906053053581759871_n.jpg?_nc_fx=fbkk1-4&oh=562f1bb1a18c247816e385b2b2c339c2&oe=5ABBD463">
+    </ion-avatar>
+    <ion-textarea [attr.rows]="9">
+    </ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <button ion-button icon-only clear item-right (click)="addIngredient()">
+      <ion-icon class="image" color="dark" name="images"></ion-icon>
+    </button>
+  </ion-item>
+
+
+
+
+
+
+
+  <ion-list>
+    <ion-list-header>Discription
+      <ion-icon name="construct"> </ion-icon>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label color="dark">Limit time</ion-label>
+      <ion-toggle color="Cover" [(ngModel)]="mushrooms"></ion-toggle>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="D MMM YYYY" min="1990-02" max="2010-10" [(ngModel)]="webkitReleased"></ion-datetime>
+      <ion-icon item-right color="clock" name="calendar"> </ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Time</ion-label>
+      <ion-datetime displayFormat="HH:mm" [(ngModel)]="parisTime"></ion-datetime>
+      <ion-icon item-right color="clock" name="clock"> </ion-icon>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label color="dark">Limit person
+      </ion-label>
+      <ion-toggle color="Cover" [(ngModel)]="mushrooms"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Count
+      </ion-label>
+      <ion-input text-right placeholder="Count Input">
+      </ion-input>
+      <ion-icon item-right color="CoverRed" name="people"> </ion-icon>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list padding-top>
+    <ion-list-header>Payments
+      <ion-icon name="pricetags"> </ion-icon>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label fixed>Price</ion-label>
+      <ion-input color="Cover" text-right placeholder="Price Input"></ion-input>
+      <ion-icon item-right color="bank" name="logo-bitcoin"> </ion-icon>
+    </ion-item>
+  </ion-list>
+
+
+
+</ion-content>

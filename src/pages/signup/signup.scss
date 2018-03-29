@@ -1,0 +1,70 @@
+page-signup {
+
+    
+   .item-datetime ion-datetime {
+        color: #ffd5a1;
+    }
+    
+    .background {
+        background: #ff5f6d; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #ff5f6d, #ffc371); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #ff5f6d, #ffc371); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+
+    ion-card.card {
+        box-shadow: none;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+    }
+    a, p,
+    ion-card-header.card-header {
+        font-size: 20px;
+        text-align: center;
+        color: #fff!important;
+    }
+    
+    .list > .item-block:first-child {
+        border: medium none;
+    }
+    
+    .item {
+        margin-bottom: 13px;
+        background: rgba(255, 255, 255, 0.5);
+        border: medium none;
+    
+        .text-input, {
+            color: #ffd5a1;
+        }
+    
+        
+        input::-moz-placeholder{
+            color: #fff!important;
+        }
+        input:-moz-placeholder {
+            color: #fff!important;
+        }
+        *:-moz-placeholder{
+            color: #fff!important;
+        }
+        *:-ms-input-placeholder{
+            color: #fff!important;
+        }
+        *::-webkit-input-placeholder{
+            color: #fff!important;
+        }
+    
+    }
+    
+    .icon {
+        padding-right: 10px;
+    }
+    
+    .bottom {
+        bottom: 0;
+    }
+    
+    .input-cover {
+    position: static;
+    }
+    
+    }
